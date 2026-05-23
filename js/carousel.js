@@ -31,47 +31,40 @@ class Carousel {
         }
     }
 
-    static Next(){
+static Next(){
         let itemAtual = carouselArr[Carousel._sequence];
         let divCarousel = document.getElementById("carousel");
         divCarousel.style.backgroundImage = "url('img/" + itemAtual.image + "')";
         divCarousel.style.backgroundRepeat = "no-repeat";
-        divCarousel.style.backgroundSize = "cover";
+        divCarousel.style.backgroundSize = "contain"; 
         divCarousel.style.backgroundPosition = "center";
 
         let divTitle = document.getElementById("carousel-title");
         divTitle.innerHTML = `<a href="${itemAtual.url}">${itemAtual.title}</a>`;
+        
+        // Avança a matemática do contador
         Carousel._sequence++;
         if(Carousel._sequence >= Carousel._size){
             Carousel._sequence = 0;
         }
-
-        let btnnext = document.getElementById("next-btn");
-
-        btnnext.onclick = function(){
-            clearInterval(Carousel._interval);
-            Carousel.Next();
-        }
-        }
+    }
 
     static Previous(){
+
+        Carousel._sequence--;
+        if(Carousel._sequence < 0){
+            Carousel._sequence = Carousel._size - 1;
+        }
+
         let itemAtual = carouselArr[Carousel._sequence];
         let divCarousel = document.getElementById("carousel");
         divCarousel.style.backgroundImage = "url('img/" + itemAtual.image + "')";
         divCarousel.style.backgroundRepeat = "no-repeat";
-        divCarousel.style.backgroundSize = "cover";
+        divCarousel.style.backgroundSize = "contain"; 
         divCarousel.style.backgroundPosition = "center";
+        
         let divTitle = document.getElementById("carousel-title");
         divTitle.innerHTML = `<a href="${itemAtual.url}">${itemAtual.title}</a>`;
-        Carousel._sequence--;
-        if(Carousel._sequence < 0){
-            Carousel._sequence = Carousel._size - 1;
-        let btnprev = document.getElementById("prev-btn");
-
-        btnprev.onclick = function(){
-            clearInterval(Carousel._interval);
-            Carousel.Previous();}
-        }
     }
 
 

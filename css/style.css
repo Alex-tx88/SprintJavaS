@@ -13,10 +13,45 @@ html {
 div#carousel {
     height: 46vh;
     width: 100%;
-     max-height: 628px;
+    max-height: 628px;
+    position: relative; /* CRUCIAL: permite que os botões flutuem aqui dentro */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
+}
+#carousel-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+#carousel-controls button {
+    pointer-events: auto;
+    background: rgba(27, 53, 126, 0.4);
+    backdrop-filter: blur(4px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+#carousel-controls button:hover {
+    background: rgba(19, 81, 216, 0.8);
+    transform: scale(1.1);
 }
 
 div#carousel-title a {
