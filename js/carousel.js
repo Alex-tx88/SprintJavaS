@@ -22,7 +22,7 @@ class Carousel {
             if(arr && arr.length > 0){
                 Carousel._sequence = 0;
                 Carousel._size = arr.length;
-                Carousel.Next(); //start
+                Carousel.Next(); 
                 Carousel._interval = setInterval(function(){ Carousel.Next(); },6000);
             }
             
@@ -31,10 +31,17 @@ class Carousel {
         }
     }
 
-static Next(){
+static Next(e){
+        if (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+
         let itemAtual = carouselArr[Carousel._sequence];
+        let linkCarousel = document.getElementById("carousel-links");
         let divCarousel = document.getElementById("carousel");
         divCarousel.style.backgroundImage = "url('img/" + itemAtual.image + "')";
+        linkCarousel.href = itemAtual.url;
         divCarousel.style.backgroundRepeat = "no-repeat";
         divCarousel.style.backgroundSize = "contain"; 
         divCarousel.style.backgroundPosition = "center";
@@ -42,14 +49,18 @@ static Next(){
         let divTitle = document.getElementById("carousel-title");
         divTitle.innerHTML = `<a href="${itemAtual.url}">${itemAtual.title}</a>`;
         
-        // Avança a matemática do contador
         Carousel._sequence++;
         if(Carousel._sequence >= Carousel._size){
             Carousel._sequence = 0;
         }
     }
 
-    static Previous(){
+    static Previous(e){
+
+        if (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
 
         Carousel._sequence--;
         if(Carousel._sequence < 0){
@@ -57,8 +68,10 @@ static Next(){
         }
 
         let itemAtual = carouselArr[Carousel._sequence];
+        let linkCarousel = document.getElementById("carousel-links");
         let divCarousel = document.getElementById("carousel");
         divCarousel.style.backgroundImage = "url('img/" + itemAtual.image + "')";
+        linkCarousel.href = itemAtual.url;
         divCarousel.style.backgroundRepeat = "no-repeat";
         divCarousel.style.backgroundSize = "contain"; 
         divCarousel.style.backgroundPosition = "center";
