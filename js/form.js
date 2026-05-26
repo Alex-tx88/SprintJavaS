@@ -1,27 +1,38 @@
-
-//class contato
-
-class contato {
-    
+class Contato {
+    constructor(nome, email, telefone, tipoContato, mensagem) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.tipoContato = tipoContato;
+        this.mensagem = mensagem;
+    }
 }
 
 function Post(form) {
+   
+    const nome = form.elements.namedItem("nome").value;
+    const email = form.elements.namedItem("email").value;
+    const telefone = form.elements.namedItem("telefone").value;
+    const tipoContato = form.elements.namedItem("contato").value; 
+    const mensagem = form.elements.namedItem("mensagem").value;
 
-  let data = new contato(form.elements.namedItem("nome").value,
-            form.elements.namedItem("sobrenome").value, 
-            form.elements.namedItem("email").value, 
-            form.elements.namedItem("cpf").value, 
-            form.elements.namedItem("telefone").value, 
-            form.elements.namedItem("contato").value);
-  
+   
+    let data = new Contato(nome, email, telefone, tipoContato, mensagem);
+    
+
+    console.log("=== Dados do formulário ===");
+    console.table(data); 
+    
+    
+    Enviar(nome);
+    
+   
+    form.reset();
 }
 
-function Enviar() {
 
-    var nome = document.getElementById("nomeid");
-
-    if (nome.value != "") {
-        alert('Obrigado sr(a) ' + nome.value + ' os seus dados foram encaminhados com sucesso');
+function Enviar(nomeUsuario) {
+    if (nomeUsuario !== "") {
+        alert('Obrigado sr(a) ' + nomeUsuario + ', os seus dados foram encaminhados com sucesso!');
     }
-
 }

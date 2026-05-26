@@ -37,20 +37,26 @@
             </div>
             <div>
                 <h2 class="titulo">Sobre Você</h2>
-            <form onsubmit="Post(this);">
-                <input type="text" name="nome" placeholder="NOME*" class="fordform" required>
-                <input type="text" name="email" placeholder="E-MAIL*" class="fordform" required>
-                <input type="text" name="cpf" placeholder="CPF*" class="fordform" required>
-                <input type="text" name="sobrenome" placeholder="SOBRENOME*" class="fordform" required>
-                <input type="text" name="telefone" placeholder="TELEFONE*" class="fordform" required>
-                <select name="contato" class="fordform" required>
-                    <option selected>COMO DESEJA SER CONTATADO</option>
-                    <option>TELEFONE</option>
-                    <option>E-MAIL</option>
-                </select>
-            <button type="submit">Enviar</button>
+            <form onsubmit="Post(this); return false;">
+            <input type="text" name="nome" placeholder="NOME*" class="fordform" required>
+    
+            <input type="email" name="email" placeholder="E-MAIL*" class="fordform" required>
+    
+            <input type="tel" name="telefone" placeholder="TELEFONE*" class="fordform" required>
+    
+        <select name="contato" class="fordform" required>
+            <option value="" disabled selected>TIPO DE CONTATO</option>
+            <option value="elogio">ELOGIO</option>
+            <option value="reclamcao">RECLAMAÇÃO</option>
+            <option value="solicitacao">SOLICITAÇÃO</option>
+
+        </select>
+    
+    <label for="mensagem">Mensagem</label>
+    <textarea name="mensagem" id="mensagem" placeholder="ESCREVA SUA MENSAGEM" rows="5" class="fordform" required></textarea>
+    
+    <button type="submit">Enviar</button>
             </form>
-            </div>
         </div>
     </main>
     <footer>
